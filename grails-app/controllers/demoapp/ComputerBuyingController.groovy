@@ -12,4 +12,9 @@ class ComputerBuyingController {
         computerBuyingService.saveComputer()
         redirect action: "index"
     }
+
+    def saveXML(){
+        computerBuyingService.saveAsXML()
+        redirect action: "index"
+    }
 }

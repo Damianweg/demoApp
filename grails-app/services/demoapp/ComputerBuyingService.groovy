@@ -2,6 +2,7 @@ package demoapp
 
 import grails.gorm.transactions.Transactional
 import groovy.json.JsonSlurper
+import groovy.xml.MarkupBuilder
 
 @Transactional
 class ComputerBuyingService {
@@ -31,4 +32,23 @@ class ComputerBuyingService {
             e.printStackTrace()
         }
     }
+
+    def saveAsXML(){
+        def stringWriter = new StringWriter()
+        def xml = new MarkupBuilder(stringWriter)
+
+        xml.faktura{
+            komputer(){
+                nazwa("nazwa")
+                data_ksiegowania("data")
+                koszt_USD("usd")
+                kosz_PLN("pln")
+            }
+        }
+        println stringWriter.toString()
+        def fileWriter = new FileWriter("src/main/resources/faktura.xml")
+        fileWriter.write(stringWriter as String)
+        fileWriter.close()
+    }
+
 }
