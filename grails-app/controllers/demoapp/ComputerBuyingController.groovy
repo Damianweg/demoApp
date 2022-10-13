@@ -3,6 +3,7 @@ package demoapp
 class ComputerBuyingController {
 
     ComputerBuyingService computerBuyingService
+    SerializeToXMLService serializeToXMLService
 
     def index() {
         render Computer.list()
@@ -16,5 +17,10 @@ class ComputerBuyingController {
     def saveXML(){
         computerBuyingService.saveAsXML()
         redirect action: "index"
+    }
+
+    //przykład użycia serializacji do tworzenia XMLa z objektu
+    def serializeToXML(){
+        serializeToXMLService.serializeToXML()
     }
 }
