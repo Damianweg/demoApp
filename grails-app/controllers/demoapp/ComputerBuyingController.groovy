@@ -6,7 +6,7 @@ class ComputerBuyingController {
     SerializeToXMLService serializeToXMLService
 
     def index() {
-        render Computer.list()
+        render view: 'index', model: [computerlist: Computer.list()]
     }
 
     def saveNewComputer(){

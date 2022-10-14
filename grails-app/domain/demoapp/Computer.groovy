@@ -2,15 +2,15 @@ package demoapp
 
 class Computer {
 
-    String name
-    String postingDate
-    Double priceUSD
-    Double pricePLN
+    String nazwa
+    String data_ksiegowania
+    Double koszt_USD
+    Double koszt_PLN
 
     static constraints = {
     }
 
     String toString(){
-        name + " " + postingDate + " priceUSD: " + priceUSD + " pricePLN: " + pricePLN
+        nazwa + " " + data_ksiegowania + " priceUSD: " + koszt_USD + " pricePLN: " + koszt_PLN
     }
 }

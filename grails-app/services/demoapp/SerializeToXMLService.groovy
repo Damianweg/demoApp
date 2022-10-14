@@ -14,7 +14,7 @@ class SerializeToXMLService {
         Double priceUSD = 1234 as Double
         Double price = 324 as Double
         Double pricePLN = Math.round((priceUSD * price) * 100) / 100
-        Computer computer = new Computer(name: "Computer1", postingDate: "2020-01-01", priceUSD: priceUSD, pricePLN: pricePLN)
+        Computer computer = new Computer(nazwa: "Computer1", data_ksiegowania: "2020-01-01", koszt_USD: priceUSD, koszt_PLN: pricePLN)
 
         XMLEncoder encoder = null
 

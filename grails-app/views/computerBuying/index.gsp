@@ -13,10 +13,11 @@
 
 <body>
 <table>
+    Lista
     <g:each in="${computerList}" var="computer">
         <tr>
-            <td>${computer.name}</td>
-            <td>${computer.postingDate}</td>
+            <td>${computer.nazwa}</td>
+            <td>${computer.data_ksiegowania}</td>
         </tr>
     </g:each>
 </table>

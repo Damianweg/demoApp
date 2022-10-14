@@ -26,7 +26,8 @@ class ComputerBuyingService {
             Double price = result["rates"]["mid"].get(0) as Double
             Double pricePLN = Math.round((priceUSD * price) * 100) / 100
 
-            Computer.findOrSaveWhere(name: "Computer1", postingDate: "2020-01-03", priceUSD: priceUSD, pricePLN: pricePLN)
+            Computer.findOrSaveWhere(nazwa: "Computer1", data_ksiegowania: "2020-01-03", koszt_USD: priceUSD, koszt_PLN: pricePLN)
+            urlStream.close()
 
         } catch (Exception e){
             e.printStackTrace()
