@@ -11,6 +11,6 @@ class Computer {
     }
 
     String toString(){
-        nazwa + " " + data_ksiegowania + " priceUSD: " + koszt_USD + " pricePLN: " + koszt_PLN
+        nazwa + " " + data_ksiegowania + " koszt USD: " + koszt_USD + " koszt PLN: " + koszt_PLN
     }
 }

@@ -7,9 +7,9 @@ import groovy.xml.MarkupBuilder
 @Transactional
 class ComputerBuyingService {
 
-    def saveComputer(){
+    def saveComputer(String name, String date, Double price){
         try {
-            String JSON_URL = "https://api.nbp.pl/api/exchangerates/rates/a/usd/2020-01-03/?format=json"
+            String JSON_URL = "https://api.nbp.pl/api/exchangerates/rates/a/usd/" + date
             URL url = new URL(JSON_URL)
 
             InputStream urlStream = null
@@ -22,12 +22,10 @@ class ComputerBuyingService {
 
             println (result.toString())
 
-            Double priceUSD = 1234 as Double
-            Double price = result["rates"]["mid"].get(0) as Double
-            Double pricePLN = Math.round((priceUSD * price) * 100) / 100
+            Double exchangeRate = result["rates"]["mid"].get(0) as Double
+            Double pricePLN1 = Math.round((price * exchangeRate) * 100) / 100
 
-            Computer.findOrSaveWhere(nazwa: "Computer1", data_ksiegowania: "2020-01-03", koszt_USD: priceUSD, koszt_PLN: pricePLN)
-            urlStream.close()
+            Computer.findOrSaveWhere(name: name, postingDate: date, priceUSD: price, pricePLN: pricePLN1)
 
         } catch (Exception e){
             e.printStackTrace()
@@ -38,12 +36,16 @@ class ComputerBuyingService {
         def stringWriter = new StringWriter()
         def xml = new MarkupBuilder(stringWriter)
 
+        def computers = Computer.findAll()
+
         xml.faktura{
-            komputer(){
-                nazwa("nazwa")
-                data_ksiegowania("data")
-                koszt_USD("usd")
-                kosz_PLN("pln")
+            computers.each {computer->
+                komputer{
+                    nazwa(computer.name)
+                    data_ksiegowania(computer.postingDate)
+                    koszt_USD(computer.priceUSD)
+                    kosz_PLN(computer.pricePLN)
+                }
             }
         }
         println stringWriter.toString()

@@ -6,17 +6,23 @@ class ComputerBuyingController {
     SerializeToXMLService serializeToXMLService
 
     def index() {
-        render view: 'index', model: [computerlist: Computer.list()]
+        render Computer.list()
     }
 
     def saveNewComputer(){
-        computerBuyingService.saveComputer()
-        redirect action: "index"
+        computerBuyingService.saveComputer("Computer1", "2022-01-03", 345 as Double)
+        computerBuyingService.saveComputer("Computer2", "2022-01-03", 543 as Double)
+        computerBuyingService.saveComputer("Computer3", "2022-01-10", 346 as Double)
+        redirect action: "showAllComputers"
     }
 
     def saveXML(){
         computerBuyingService.saveAsXML()
-        redirect action: "index"
+        redirect action: "showAllComputers"
+    }
+
+    def showAllComputers(){
+        render view: 'showAllComputers', model: [computerList: Computer.list()]
     }
 
     //przykład użycia serializacji do tworzenia XMLa z objektu
